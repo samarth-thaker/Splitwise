@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splitwise/widgets/groupTile.dart';
+import 'package:splitwise/widgets/loginButton.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -236,7 +237,6 @@ class _DashboardState extends State<Dashboard> {
                       onChanged: (value) {
                         setState(() => splitType = value.toString());
                         customSplit();
-                        
                       },
                     ),
                     Text("Custom"),
@@ -247,6 +247,7 @@ class _DashboardState extends State<Dashboard> {
           );
         });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -335,11 +336,17 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               const SizedBox(height: 20),
-              Grouptile(groupname: 'Cup of tea', groupBalance: 500),
+              //Grouptile(groupname: 'Cup of tea', groupBalance: 500),
               SizedBox(
                 height: 20,
               ),
-              Grouptile(groupname: 'Manali Trip', groupBalance: 10000),
+              //Grouptile(groupname: 'Manali Trip', groupBalance: 10000),
+              LoginButton(
+                  label: 'Groups',
+                  onPressed: ()=>{
+                    Navigator.pushNamed(context, '/group'),
+                  },
+                  buttonWidth: MediaQuery.of(context).size.width * 0.8)
             ],
           ),
         ),

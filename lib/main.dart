@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:splitwise/screens/editProfile.dart';
+import 'package:splitwise/screens/group.dart';
 import 'package:splitwise/screens/loginscreen.dart';
 import 'package:splitwise/screens/dashboard.dart';
 import 'package:splitwise/screens/userProfile.dart';
-
-void main() {
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox("MyBox");
   runApp(const MyApp());
 }
 
@@ -25,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/dashboard': (context) => Dashboard(),
         '/userProfile': (context) => UserProfile(),
         '/editProfile': (context) => Editprofile(),
+        '/group' : (context) => Groups(),
       },
     );
   }

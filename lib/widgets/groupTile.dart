@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class Grouptile extends StatefulWidget {
   final String groupname;
   final double groupBalance;
-
-  const Grouptile({required this.groupname, required this.groupBalance, Key? key}) : super(key: key);
+  
+  const Grouptile(
+      {required this.groupname, required this.groupBalance, Key? key})
+      : super(key: key);
 
   @override
   State<Grouptile> createState() => _GrouptileState();
@@ -16,7 +18,7 @@ class _GrouptileState extends State<Grouptile> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       margin: const EdgeInsets.symmetric(vertical: 5),
-      width: MediaQuery.of(context).size.width * 0.9, // Avoid taking full width
+      width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -32,19 +34,45 @@ class _GrouptileState extends State<Grouptile> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Ensures text does not overflow
           Expanded(
             child: Text(
               widget.groupname,
-              overflow: TextOverflow.ellipsis, // Prevents overflow
-              maxLines: 1, // Keeps it single line
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
           ),
-          const SizedBox(width: 10), // Spacing between elements
+          const SizedBox(width: 5),
           Text(
             "₹${widget.groupBalance.toStringAsFixed(2)}",
             style: const TextStyle(fontSize: 16, color: Colors.green),
+          ),
+          const SizedBox(width: 5),
+          IconButton(
+            icon: Icon(Icons.edit_sharp),
+            onPressed: ()=>{
+              showModalBottomSheet(context: context, builder: (BuildContext context)
+              {
+                return Padding(padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+              top: 15,
+              right: 15,
+              left: 15,
+            ),
+            child: Column(
+              children: [
+                TextField(decoration: InputDecoration(hintText: 'Edit group name'),),
+                
+                TextButton(child: Text('Save', style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),), onPressed: ()=>{})
+              ],
+            ),
+            );
+              })
+            },
           ),
         ],
       ),
