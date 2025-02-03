@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
-class LoginButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final String label;
   final double buttonWidth;
   final VoidCallback onPressed;
 
-  const LoginButton({required this.label, required this.onPressed,required this.buttonWidth, Key? key})
+  const CustomButton(
+      {required this.label,
+      required this.onPressed,
+      required this.buttonWidth,
+      Key? key})
       : super(key: key);
 
   @override

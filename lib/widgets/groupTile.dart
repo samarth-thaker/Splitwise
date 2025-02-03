@@ -23,7 +23,7 @@ class _GrouptileState extends State<Grouptile> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
-          BoxShadow(
+          BoxShadow(    
             color: Colors.grey.withOpacity(0.2),
             blurRadius: 4,
             spreadRadius: 1,
@@ -72,6 +72,86 @@ class _GrouptileState extends State<Grouptile> {
             ),
             );
               })
+            },
+          ),
+          const SizedBox(width: 5,),
+           IconButton(
+            icon: Icon(Icons.delete_sharp),
+            onPressed: ()=>{
+              showModalBottomSheet(
+  context: context,
+  isScrollControlled: true, // Ensures proper expansion
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+  ),
+  builder: (BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom + 16, // Adjust for keyboard
+        top: 16,
+        left: 16,
+        right: 16,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+         
+          Container(
+            height: 5,
+            width: 40,
+            decoration: BoxDecoration(
+              color: Colors.grey[400],
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          SizedBox(height: 16),
+
+          
+          Text(
+            "Are you sure you want to delete this group?",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          SizedBox(height: 20),
+
+          
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.redAccent,
+                padding: EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Text(
+                "Delete",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+          ),
+
+          
+          TextButton(
+            onPressed: () => Navigator.pop(context), 
+            child: Text(
+              "Cancel",
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
+          ),
+        ],
+      ),
+    );
+            }
+              
+  
+)
+
             },
           ),
         ],
