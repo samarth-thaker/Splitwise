@@ -3,7 +3,7 @@ import 'package:splitwise/widgets/groupTile.dart';
 
 class Groups extends StatefulWidget {
   const Groups({super.key});
-  
+
   @override
   State<Groups> createState() => _GroupsState();
 }
@@ -13,8 +13,8 @@ class _GroupsState extends State<Groups> {
   final TextEditingController amountController = TextEditingController();
 
   List<Map<String, dynamic>> groupTile = [
-    {"groupname": 'Cup of tea', "groupBalance": 500},
-    {"groupname": 'Manali', "groupBalance": 1500},
+    {"groupname": 'Cup of tea', "groupBalance": 500.0},
+    {"groupname": 'Manali', "groupBalance": 1500.0},
   ];
 
   void addGroup(BuildContext context) {
@@ -78,8 +78,8 @@ class _GroupsState extends State<Groups> {
 
                     if (groupName.isNotEmpty && amount != null) {
                       setState(() {
-                        
-                        groupTile.add({"groupname": groupName, "groupBalance": amount});
+                        groupTile.add(
+                            {"groupname": groupName, "groupBalance": amount});
                       });
                       groupController.clear();
                       amountController.clear();
@@ -130,10 +130,8 @@ class _GroupsState extends State<Groups> {
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
-             
-               SearchBar(),
+              SearchBar(),
               SizedBox(height: 15),
-             
               ...groupTile.map((group) {
                 return Grouptile(
                   groupname: group['groupname'],
