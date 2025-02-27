@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:splitwise/screens/group.dart';
 class Grouptile extends StatefulWidget {
   String groupname;
   final double groupBalance;
@@ -175,7 +175,7 @@ class _GrouptileState extends State<Grouptile> {
                           child: ElevatedButton(
                             onPressed: () {
                               widget.onDelete
-                                  ?.call(); // ✅ Call the delete function
+                                  ?.call(); 
                               Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(

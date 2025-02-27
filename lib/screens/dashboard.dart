@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:splitwise/widgets/groupTile.dart';
+import 'package:splitwise/screens/group.dart';
+//import 'package:splitwise/widgets/groupTile.dart';
 import 'package:splitwise/widgets/customButton.dart';
 
 class Dashboard extends StatefulWidget {
@@ -19,16 +20,32 @@ class _DashboardState extends State<Dashboard> {
   String splitType = "Equally";
   bool isLoading = false;
   Map<String, TextEditingController> userController = {};
-  final List<String> groups = ["Cup of tea", "Manali"];
+  List<String> groups = [/* "Samarth", "Yash", "Birju" */];
   final List<String> participants = ["Samarth", "Yash", "Birju", "Aditya"];
   void initState() {
+    
     super.initState();
+   
     _initializeUserControllers();
+     /* groups =    */
   }
 
   void _initializeUserControllers() {
     for (String user in participants) {
       userController[user] = TextEditingController();
+    }
+  }
+
+  void navigateToGroups() async {
+    final updatedGroups = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Groups()),
+    );
+
+    if (updatedGroups != null && updatedGroups is List<String>) {
+      setState(() {
+        groups = updatedGroups;
+      });
     }
   }
 
@@ -151,7 +168,7 @@ class _DashboardState extends State<Dashboard> {
                     labelText: "Select Group",
                     border: OutlineInputBorder(),
                   ),
-                  items: groups.map((group) {
+                  items: groups.map<DropdownMenuItem<String>>((group) {
                     return DropdownMenuItem(value: group, child: Text(group));
                   }).toList(),
                   onChanged: (value) {
